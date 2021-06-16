@@ -1,4 +1,5 @@
-import { Controller, Get, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { createAuthorDTO } from './dto/create-author.dto';
 
 @Controller('author')
 export class AuthorController {
@@ -8,17 +9,22 @@ export class AuthorController {
     }
 
     @Get(':id')
-    getAuthorById(){
+    getAuthorById(@Param('id')id:string){
         return "getAuthorById";
     }
 
     @Post('create')
-    createNewAuthor(){
-        return "Create new author";
+    createAuthor(@Body() dto:createAuthorDTO ){
+        return dto;
     }
 
     @Put('update')
-    updateNewAuthor(){
+    updateNewAuthor(@Param('id')id:string){
         return "Update new author";
+    }
+
+    @Delete('delete')
+    deleteAuthor(@Param('id')id:string){
+        return "Delete author"; 
     }
 }

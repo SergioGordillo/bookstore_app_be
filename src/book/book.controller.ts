@@ -1,4 +1,6 @@
-import { Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body } from '@nestjs/common';
+import { Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { createBookDTO } from './dto/create-book.dto';
 
 @Controller('book')
 export class BookController {
@@ -14,12 +16,17 @@ export class BookController {
     }
 
     @Post('create')
-    createNewBook(){
-        return "Create new book";
+    createBook(@Body() dto:createBookDTO ){
+        return dto;
     }
 
     @Put('update')
-    updateNewBook(){
+    updateBook(){
         return "Update new book";
+    }
+
+    @Delete('delete')
+    deleteBook(@Param('id')id:string){
+        return "Delete book"; 
     }
 }
